@@ -1,0 +1,14 @@
+{
+:global  check1 [/ping 8.8.8.8 count=1]
+:global  check2 [/ping 1.1.1.1 count=1]
+:global sim [/system routerboard modem get sim-slot]
+
+:if ($check1 = "0" and $check2 = "0" and $sim = "a") do={
+/system routerboard modem set sim-slot=b;
+/system reboot;
+}
+:if ($check1 = "0" and $check2 = "0" and $sim = "b") do={
+/system routerboard modem set sim-slot=a;
+/system reboot;
+   }
+}
