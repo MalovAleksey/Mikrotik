@@ -1,0 +1,14 @@
+{
+:global  check1 [/ping 8.8.8.8 count=1]
+:global  check2 [/ping 1.1.1.1 count=1]
+:global sim [/intarface/lte/settings/ get sim-slot]
+
+:if ($check1 = "0" and $check2 = "0" and $sim = "a") do={
+//intarface/lte/settings/ set sim-slot=b;
+/system reboot;
+}
+:if ($check1 = "0" and $check2 = "0" and $sim = "b") do={
+/intarface/lte/settings/ set sim-slot=a;
+/system reboot;
+   }
+}
